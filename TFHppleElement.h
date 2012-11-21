@@ -61,6 +61,10 @@
 // the parent of a node
 @property (nonatomic, unsafe_unretained, readonly) TFHppleElement *parent;
 
+// The value is the recursive concatenation of all text nodes
+//
+@property (nonatomic, copy, readonly) NSString *value;
+
 // Returns YES if the node has any child
 // This is more efficient than using the children property since no NSArray is constructed
 - (BOOL)hasChildren;

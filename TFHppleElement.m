@@ -80,6 +80,7 @@ static NSString * const TFHppleTextNodeName            = @"text";
       TFHppleElement *element = [TFHppleElement hppleElementWithNode:child];
       element.parent = self;
       [children addObject:element];
+      [element release];
   }
   return children;
 }
@@ -172,5 +173,27 @@ static NSString * const TFHppleTextNodeName            = @"text";
 {
     return self.firstTextChild.content;
 }
+
+
+- (NSString *) value
+{
+    NSString *v = @"";
+    
+    for (TFHppleElement* child in self.children)
+    {
+        if ( child.content )
+        {
+            v = [ v stringByAppendingString:child.content ];
+        }
+        else if( child.hasChildren )
+        {
+            v = [ v stringByAppendingString:child.value ];
+        }
+    }
+    
+    return ( v.length == 0 ) ? nil : v;
+}
+
+
 
 @end

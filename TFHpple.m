@@ -82,8 +82,12 @@
   }
 
   NSMutableArray * hppleElements = [NSMutableArray array];
-  for (id node in detailNodes) {
-    [hppleElements addObject:[TFHppleElement hppleElementWithNode:node]];
+  for (id node in detailNodes)
+  {
+      TFHppleElement *element = [TFHppleElement hppleElementWithNode:node];
+        
+      [hppleElements addObject:element];
+      [element release];
   }
   return hppleElements;
 }
